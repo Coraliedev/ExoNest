@@ -9,7 +9,7 @@ export class EcoloGuard implements CanActivate {
     context: ExecutionContext,
   ): boolean | Promise<boolean> | Observable<boolean> {
     const greenVehicles = this.reflector.get<string[]>(
-      'greenVehicle',
+      'greenVehicles',
       context.getHandler(),
     );
     const req = context.switchToHttp().getRequest();

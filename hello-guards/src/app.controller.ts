@@ -1,6 +1,14 @@
-import { Body, Controller, Get, Post, SetMetadata, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Post,
+  SetMetadata,
+  UseGuards,
+} from '@nestjs/common';
 import { AppService } from './app.service';
 import { EcoloGuard } from './ecolo/ecolo.guard';
+import { GreenVehicles } from './green-vehicles/green-vehicles.decorator';
 
 @Controller()
 export class AppController {
@@ -13,9 +21,9 @@ export class AppController {
 
   @Post('destination')
   @UseGuards(EcoloGuard)
-  @SetMetadata('greenVehicle', ['legs', 'bike', 'horse'])
-  travelToDestination(@Body('vehicle') vehicle:string){
+  @GreenVehicles('legs', 'bike', 'horse', 'hands')
+  travelToDestination(@Body('vehicle') vehicle: string) {
     console.log('travelToDestination');
-    return `Have a good trip in your ${vehicle}`;
+    return `Have a good trip on your ${vehicle}`;
   }
 }
